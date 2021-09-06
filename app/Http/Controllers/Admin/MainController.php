@@ -15,9 +15,8 @@ class MainController extends Controller
         // Tag::create([
         //     'title' => 'Hello world!'
         // ]);
-        $tag = new Tag();
-        $tag->title = "Hello world!";
-        $tag->save();
-        return view('Admin.index');
+        return view('admin.index');
     }
 }
+
+

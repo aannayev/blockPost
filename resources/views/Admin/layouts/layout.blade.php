@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/admin/css/admin.css') }}">
+    <style>
+        .ck-editor__editable_inline {
+            min-height: 300px;
+        }
+    </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -17,7 +22,7 @@
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                <a class="nav-link" data-widget="pushmenu" data-enable-remember="true" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="../../index3.html" class="nav-link">Home</a>
@@ -267,6 +272,11 @@
                         </div>
                     @endif
 
+                    @if (session()->has('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
                     @if (session()->has('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
@@ -297,6 +307,7 @@
 <!-- ./wrapper -->
 
 <script src="{{ asset('assets/admin/js/admin.js') }}"></script>
+
 <script>
     $('.nav-sidebar a').each(function () {
         let location = window.location.protocol + '//' + window.location.host + window.location.pathname;
@@ -306,7 +317,16 @@
             $(this).closest('.has-treeview').addClass('menu-open');
         }
     });
+
+
+    $(document).ready(function(){
+        bsCustomFileInput.init();
+    });
 </script>
+
+@yield('scripts')
+
+
 
 </body>
 </html>
